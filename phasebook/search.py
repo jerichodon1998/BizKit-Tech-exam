@@ -37,6 +37,35 @@ def search_users(args):
             if validQuery in userQueries:
                 userValidQueries.append(validQuery)
 
+    # Bonus Challenge Search
+    def filterUsersChallenge():
+        getValidQueries()
+        users = []
+        if "id" in userValidQueries:
+            for user in USERS:
+                if userQueries["id"] == user["id"]:
+                    if user not in users:
+                            users.append(user)
+
+        if "name" in userValidQueries :
+            for user in USERS:
+                if userQueries["name"].lower() in user["name"].lower() :
+                    if user not in users:
+                        users.append(user)
+
+        if "age" in userValidQueries:
+            for user in USERS:
+                if int(userQueries["age"]) <= int(user["age"])+1 and int(userQueries["age"]) >= int(user["age"]-1):
+                    if user not in users:
+                            users.append(user)
+
+        if "occupation" in userValidQueries:
+            for user in USERS:
+                if userQueries["occupation"].lower() in user["occupation"].lower():
+                    if user not in users:
+                        users.append(user)
+        return users  
+
     # Filter users
     def filterUsers():
         getValidQueries()
@@ -67,18 +96,18 @@ def search_users(args):
                     if user not in users:
                         users.append(user)
 
-            if "occupation" in userValidQueries:
-                if userQueries["occupation"].lower() in user["occupation"].lower():
-                    if user not in users:
-                        users.append(user)
-
             if "age" in userValidQueries:
                 if int(userQueries["age"]) <= int(user["age"])+1 and int(userQueries["age"]) >= int(user["age"]-1):
                     if user not in users:
                             users.append(user)
 
+            if "occupation" in userValidQueries:
+                if userQueries["occupation"].lower() in user["occupation"].lower():
+                    if user not in users:
+                        users.append(user)
+
         return users   
 
     
 
-    return filterUsers()
+    return filterUsersChallenge()
